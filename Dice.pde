@@ -18,7 +18,13 @@ class Die{
     num=(int)(Math.random()*6)+1;
     
     if(num==6){
-      
+      fill(r,g,b);
+      ellipse((dieX+15),(dieY+7),10,10);
+      ellipse((dieX+15),(dieY+14),10,10);
+      ellipse((dieX+15),(dieY+21),10,10);
+      ellipse((dieX+35),(dieY+28),10,10);
+      ellipse((dieX+35),(dieY+35),10,10);
+      ellipse((dieX+35),(dieY+42),10,10);
     }else if(num==5){
       
     }else if(num==4){
