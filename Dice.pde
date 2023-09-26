@@ -26,7 +26,12 @@ class Die{
       ellipse((dieX+35),(dieY+35),10,10);
       ellipse((dieX+35),(dieY+42),10,10);
     }else if(num==5){
-      
+      fill(r,g,b);
+      ellipse((dieX+35),(dieY+15),10,10);
+      ellipse((dieX+15),(dieY+35),10,10);
+      ellipse((dieX+35),(dieY+35),10,10);
+      ellipse((dieX+15),(dieY+15),10,10);
+      ellipse((dieX+25),(dieY+25),10,10);
     }else if(num==4){
       fill(r,g,b);
       ellipse((dieX+35),(dieY+15),10,10);
@@ -34,7 +39,10 @@ class Die{
       ellipse((dieX+35),(dieY+35),10,10);
       ellipse((dieX+15),(dieY+15),10,10);
     }else if(num==3){
-      
+      fill(r,g,b);
+      ellipse((dieX+10),(dieY+10),10,10);
+      ellipse((dieX+25),(dieY+25),10,10);
+      ellipse((dieX+40),(dieY+40),10,10);
     }else if(num==2){
       fill(r,g,b);
       ellipse((dieX+35),(dieY+25),10,10);
