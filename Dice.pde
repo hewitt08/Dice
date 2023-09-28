@@ -1,3 +1,6 @@
+int x = 0;
+int y = 0;
+
 void mousePressed(){
   redraw();
 }//mousePressed end
@@ -19,12 +22,12 @@ class Die{
     
     if(num==6){
       fill(r,g,b);
-      ellipse((dieX+15),(dieY+7),10,10);
-      ellipse((dieX+15),(dieY+14),10,10);
-      ellipse((dieX+15),(dieY+21),10,10);
-      ellipse((dieX+35),(dieY+28),10,10);
-      ellipse((dieX+35),(dieY+35),10,10);
-      ellipse((dieX+35),(dieY+42),10,10);
+      ellipse((dieX+15),(dieY+12.5),10,10);
+      ellipse((dieX+15),(dieY+25),10,10);
+      ellipse((dieX+15),(dieY+37.5),10,10);
+      ellipse((dieX+35),(dieY+12.5),10,10);
+      ellipse((dieX+35),(dieY+25),10,10);
+      ellipse((dieX+35),(dieY+37.5),10,10);
     }else if(num==5){
       fill(r,g,b);
       ellipse((dieX+35),(dieY+15),10,10);
@@ -65,7 +68,15 @@ Die die1;
 void setup(){
   size(500,500);
   noLoop();
-  die1=new Die(225,225);
+  //background(255);
+  while(x<500){
+    while(y<500){
+      die1=new Die(x,y);
+      y = y + 50;
+    }
+    y = 0;
+    x = x + 50;
+  }
 }//setup end
 
 void draw(){
