@@ -1,64 +1,77 @@
-int x = 0;
-int y = 0;
+float x = 0;
+float y = 0;
+int r=255;
+int g=255;
+int b=255;
+int showR = 0;
+int showG = 0;
+int showB = 0;
+int sum = 0;
+float dieSize = 500;
+float dotSize = dieSize/5;
 
 void mousePressed(){
   redraw();
 }//mousePressed end
 
 class Die{
-  int dieX, dieY, num, r, g, b;
+  float dieX, dieY, num;
   
-  Die(int x, int y){
+  Die(float x, float y){
     dieX=x;
     dieY=y;
     num=0;
-    r=255;
-    g=255;
-    b=255;
   }//constructor end
   
   void roll(){
     num=(int)(Math.random()*6)+1;
-    
+    noStroke();
     if(num==6){
+      sum = sum + 6;
       fill(r,g,b);
-      ellipse((dieX+15),(dieY+12.5),10,10);
-      ellipse((dieX+15),(dieY+25),10,10);
-      ellipse((dieX+15),(dieY+37.5),10,10);
-      ellipse((dieX+35),(dieY+12.5),10,10);
-      ellipse((dieX+35),(dieY+25),10,10);
-      ellipse((dieX+35),(dieY+37.5),10,10);
+      ellipse(dieX+(dieSize/3.33),(dieY+(dieSize/4)),dotSize,dotSize);//left2
+      ellipse(dieX+(dieSize/3.33),(dieY+(dieSize/2)),dotSize,dotSize);//left
+      ellipse(dieX+(dieSize/3.33),(dieY+(dieSize/4)*3),dotSize,dotSize);
+      ellipse((dieX+(dieSize-(dieSize/3.33))),(dieY+(dieSize/4)),dotSize,dotSize);//right2
+      ellipse(dieX+(dieSize-(dieSize/3.33)),(dieY+(dieSize/2)),dotSize,dotSize);//right
+      ellipse(dieX+(dieSize-(dieSize/3.33)),(dieY+(dieSize/4)*3),dotSize,dotSize);//right
     }else if(num==5){
+      sum = sum + 5;
       fill(r,g,b);
-      ellipse((dieX+35),(dieY+15),10,10);
-      ellipse((dieX+15),(dieY+35),10,10);
-      ellipse((dieX+35),(dieY+35),10,10);
-      ellipse((dieX+15),(dieY+15),10,10);
-      ellipse((dieX+25),(dieY+25),10,10);
+      ellipse((dieX+(dieSize-(dieSize/3.33))),(dieY+(dieSize/3.33)),dotSize,dotSize);
+      ellipse((dieX+(dieSize/3.33)),(dieY+(dieSize-(dieSize/3.33))),dotSize,dotSize);
+      ellipse((dieX+(dieSize-(dieSize/3.33))),(dieY+(dieSize-(dieSize/3.33))),dotSize,dotSize);
+      ellipse((dieX+(dieSize/3.33)),(dieY+(dieSize/3.33)),dotSize,dotSize);
+      ellipse((dieX+(dieSize/2)),(dieY+(dieSize/2)),dotSize,dotSize);
     }else if(num==4){
+      sum = sum + 4;
       fill(r,g,b);
-      ellipse((dieX+35),(dieY+15),10,10);
-      ellipse((dieX+15),(dieY+35),10,10);
-      ellipse((dieX+35),(dieY+35),10,10);
-      ellipse((dieX+15),(dieY+15),10,10);
+      ellipse((dieX+(dieSize-(dieSize/3.33))),(dieY+(dieSize/3.33)),dotSize,dotSize);
+      ellipse((dieX+(dieSize/3.33)),(dieY+(dieSize-(dieSize/3.33))),dotSize,dotSize);
+      ellipse((dieX+(dieSize-(dieSize/3.33))),(dieY+(dieSize-(dieSize/3.33))),dotSize,dotSize);
+      ellipse((dieX+(dieSize/3.33)),(dieY+(dieSize/3.33)),dotSize,dotSize);
     }else if(num==3){
+      sum = sum + 3;
       fill(r,g,b);
-      ellipse((dieX+10),(dieY+10),10,10);
-      ellipse((dieX+25),(dieY+25),10,10);
-      ellipse((dieX+40),(dieY+40),10,10);
+      ellipse((dieX+(dieSize/5)),(dieY+(dieSize/5)),dotSize,dotSize);
+      ellipse((dieX+(dieSize/2)),(dieY+(dieSize/2)),dotSize,dotSize);
+      ellipse((dieX+((dieSize/5)*4)),(dieY+((dieSize/5)*4)),dotSize,dotSize);
     }else if(num==2){
+      sum = sum + 2;
       fill(r,g,b);
-      ellipse((dieX+35),(dieY+25),10,10);
-      ellipse((dieX+15),(dieY+25),10,10);
+      ellipse((dieX+(dieSize-(dieSize/3.33))),(dieY+(dieSize/2)),dotSize,dotSize);
+      ellipse((dieX+(dieSize/3.33)),(dieY+(dieSize/2)),dotSize,dotSize);
     }else{
+      sum = sum + 1;
       fill(r,g,b);
-      ellipse((dieX+25),(dieY+25),10,10);
+      ellipse((dieX+(dieSize/2)),(dieY+(dieSize/2)),dotSize,dotSize);
     }
   }
   
   void show(){
-    fill(0,0,0);
-    rect(dieX,dieY,50,50);
+    fill(showR,showG,showB);
+    stroke(255);
+    rect(dieX,dieY,dieSize,dieSize);
   }
   
 }//die class end
@@ -69,17 +82,23 @@ void setup(){
   size(500,500);
   noLoop();
   //background(255);
-  while(x<500){
-    while(y<500){
-      die1=new Die(x,y);
-      y = y + 50;
-    }
-    y = 0;
-    x = x + 50;
-  }
 }//setup end
 
 void draw(){
-  die1.show();
-  die1.roll();
+  int numDice = (int)(Math.random()*450)+25;
+  while(x<numDice){
+    while(y<numDice){
+      showB = sum;
+      die1=new Die(x,y);
+      die1.show();
+      die1.roll();
+      y = y + dieSize;
+    }
+    y = 0;
+    x = x + dieSize;
+  }
+  System.out.println(sum);
+  x = 0;
+  y = 0;
+  sum = 0;
 }//draw end
