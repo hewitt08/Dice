@@ -47,7 +47,8 @@ class Die{
       fill(r,g,b);
       ellipse(dieX+(dieSize/3.33),(dieY+(dieSize/4)),dotSize,dotSize);//left2
       ellipse(dieX+(dieSize/3.33),(dieY+(dieSize/2)),dotSize,dotSize);//left
-      ellipse(dieX+(dieSize/3.33),(dieY+(dieSize/4)*3),dotSize,dotSize);
+      ellipse(dieX+(dieSize/3.33),(dieY+(dieSize/4)*3),dotSize,dotSize);//left
+      
       ellipse((dieX+(dieSize-(dieSize/3.33))),(dieY+(dieSize/4)),dotSize,dotSize);//right2
       ellipse(dieX+(dieSize-(dieSize/3.33)),(dieY+(dieSize/2)),dotSize,dotSize);//right
       ellipse(dieX+(dieSize-(dieSize/3.33)),(dieY+(dieSize/4)*3),dotSize,dotSize);//right
@@ -104,7 +105,19 @@ void draw(){
 //500,250,100,50,25,10
   while(x<500){
     while(y<500){
-      showB = sum;
+      if(dieSize>250){
+        showB = sum;
+      }else if(dieSize>100){
+        showB = sum/30;
+      }else if(dieSize>50){
+        showB = sum/4;
+      }else if(dieSize>25){
+        showB = sum/8;
+      }else if(dieSize>10){
+        showB = sum/10;
+      }else{
+        showB = sum/80;
+      }
       die1=new Die(x,y);
       die1.show();
       die1.roll();
@@ -113,11 +126,9 @@ void draw(){
     y = 0;
     x = x + dieSize;
   }
-  System.out.println(sum);
-  System.out.println(dieSize);
   fill(255,0,0);
   textSize(100);
-  text(sum,40,80);
+  text(sum,20,90);
   x = 0;
   y = 0;
   sum = 0;
