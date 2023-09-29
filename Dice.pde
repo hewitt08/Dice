@@ -7,10 +7,26 @@ int showR = 0;
 int showG = 0;
 int showB = 0;
 int sum = 0;
-float dieSize = 500;
+float dieSize = 100;
 float dotSize = dieSize/5;
+//500,250,100,50,25,10
 
 void mousePressed(){
+  int dieSizeRandom = (int)(Math.random()*6);
+  if(dieSizeRandom==5){
+    dieSize=500;
+  }else if(dieSizeRandom==4){
+    dieSize=250;
+  }else if(dieSizeRandom==3){
+    dieSize=100;
+  }else if(dieSizeRandom==2){
+    dieSize=50;
+  }else if(dieSizeRandom==1){
+    dieSize=25;
+  }else{
+    dieSize=10;
+  }
+  dotSize = dieSize/5;
   redraw();
 }//mousePressed end
 
@@ -85,9 +101,9 @@ void setup(){
 }//setup end
 
 void draw(){
-  int numDice = (int)(Math.random()*450)+25;
-  while(x<numDice){
-    while(y<numDice){
+//500,250,100,50,25,10
+  while(x<500){
+    while(y<500){
       showB = sum;
       die1=new Die(x,y);
       die1.show();
@@ -98,6 +114,10 @@ void draw(){
     x = x + dieSize;
   }
   System.out.println(sum);
+  System.out.println(dieSize);
+  fill(255,0,0);
+  textSize(100);
+  text(sum,40,80);
   x = 0;
   y = 0;
   sum = 0;
