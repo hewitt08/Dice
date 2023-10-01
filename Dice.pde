@@ -108,13 +108,13 @@ void draw(){
       if(dieSize>250){
         showB = sum;
       }else if(dieSize>100){
-        showB = sum/30;
+        showB = sum*5;
       }else if(dieSize>50){
-        showB = sum/4;
+        showB = sum;
       }else if(dieSize>25){
-        showB = sum/8;
+        showB = sum/5;
       }else if(dieSize>10){
-        showB = sum/10;
+        showB = sum/8;
       }else{
         showB = sum/80;
       }
